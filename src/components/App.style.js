@@ -16,7 +16,12 @@ export const SelectBar = styled.div`
   justify-content: space-between;
 `;
 
-export const SelectLangBar = styled.div``;
+export const SelectLangBar = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+`;
 
 export const SelectThemeBar = styled.div`
   display: flex;

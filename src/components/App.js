@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import LangContext from "../contexts/LangContext";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle, lightTheme, darkTheme } from "../theme/Theme";
 import Flags from "country-flag-icons/react/3x2";
@@ -30,6 +31,12 @@ class App extends Component {
   };
 
   render() {
+    const flagStyle = {
+      width: "60px",
+      height: "60px",
+      padding: "10px",
+      cursor: "pointer",
+    };
     return (
       <ThemeProvider theme={this.state.themeLight ? lightTheme : darkTheme}>
         <>
@@ -39,22 +46,12 @@ class App extends Component {
               <SelectLangBar>
                 Select a language:
                 <Flags.US
-                  style={{
-                    width: "60px",
-                    height: "60px",
-                    padding: "10px",
-                    cursor: "pointer",
-                  }}
+                  style={flagStyle}
                   title="United States"
                   onClick={() => this.onLanguageChange("english")}
                 />
                 <Flags.NL
-                  style={{
-                    width: "60px",
-                    height: "60px",
-                    padding: "10px",
-                    cursor: "pointer",
-                  }}
+                  style={flagStyle}
                   title="Netherlands"
                   onClick={() => this.onLanguageChange("dutch")}
                 />
@@ -64,7 +61,9 @@ class App extends Component {
                 <DiamondIcon onClick={() => this.toggleTheme()}></DiamondIcon>
               </SelectThemeBar>
             </SelectBar>
-            <UserCreate />
+            <LangContext.Provider value={this.state.language}>
+              <UserCreate />
+            </LangContext.Provider>
           </AppContainer>
         </>
       </ThemeProvider>

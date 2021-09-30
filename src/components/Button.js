@@ -6,8 +6,8 @@ class Button extends Component {
   static contextType = LangContext;
 
   render() {
-    console.log(this.context);
-    return <StyledButton>Submit</StyledButton>;
+    const text = this.context === "english" ? "Submit" : "Voorleggen";
+    return <StyledButton>{text}</StyledButton>;
   }
 }
 
